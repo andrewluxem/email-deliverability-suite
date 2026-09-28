@@ -92,7 +92,7 @@ def count_spf_lookups(
         if "%" in target:
             continue  # macro: expanded at send time, cannot be followed statically
         if target in seen:
-            problems.append(f"loop detected at {term.name}:{target}")
+            problems.append(f"loop detected at {term.name}:{target} (receivers return permerror)")
             continue
         seen.add(target)
         try:
@@ -205,6 +205,19 @@ def check_spf(client: DNSClient, domain: str) -> tuple[list[Finding], str | None
                 "returns permerror.",
                 "Remove unused includes, replace includes with ip4/ip6 ranges, or split sending "
                 "across subdomains.",
+                category,
+                weight=2,
+                details=details,
+            )
+        )
+    elif fatal := [p for p in problems if "permerror" in p]:
+        findings.append(
+            Finding(
+                "SPF lookups",
+                Status.FAIL,
+                f"SPF breaks with a permanent error: {'; '.join(fatal)}.",
+                "Remove or fix the broken include/redirect; a permerror means SPF fails for "
+                "every message.",
                 category,
                 weight=2,
                 details=details,

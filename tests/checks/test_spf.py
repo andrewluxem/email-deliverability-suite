@@ -115,7 +115,7 @@ def test_a_mx_exists_count_as_lookups():
 def test_missing_include_target_is_reported():
     zone = FakeDNS({("example.com", "TXT"): ["v=spf1 include:gone.example.net -all"]})
     finding = spf_findings(zone)["SPF lookups"]
-    assert finding.status is Status.WARN
+    assert finding.status is Status.FAIL
     assert "no SPF record" in finding.message
 
 
@@ -126,7 +126,9 @@ def test_include_loop_is_detected():
             ("a.example.net", "TXT"): ["v=spf1 include:example.com ~all"],
         }
     )
-    assert "loop" in spf_findings(zone)["SPF lookups"].message
+    finding = spf_findings(zone)["SPF lookups"]
+    assert "loop" in finding.message
+    assert finding.status is Status.FAIL
 
 
 def test_include_timeout_is_reported_not_raised():
@@ -136,4 +138,6 @@ def test_include_timeout_is_reported_not_raised():
             ("slow.example.net", "TXT"): "timeout",
         }
     )
-    assert "timed out" in spf_findings(zone)["SPF lookups"].message
+    finding = spf_findings(zone)["SPF lookups"]
+    assert "timed out" in finding.message
+    assert finding.status is Status.WARN

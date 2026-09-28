@@ -4,6 +4,7 @@ import typer
 
 from deliv import (
     __version__,
+    blacklist,
     bounce_classify,
     copy_check,
     dns_audit,
@@ -49,6 +50,7 @@ app.command("spam-scan")(spam_scan.command)
 app.command("copy-check")(copy_check.command)
 app.command("header-analyze")(header_analyze.command)
 app.command("bounce-classify")(bounce_classify.command)
+app.command("blacklist")(blacklist.command)
 
 
 def main() -> None:

@@ -76,11 +76,12 @@ src = ["src", "tests"]
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "D"]
 ignore = [
-  "D203", # one-blank-line-before-class conflicts with D211
-  "D213", # multi-line-summary-second-line conflicts with D212
   "D105", # magic methods do not need docstrings
   "D107", # __init__ is documented on the class
 ]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["D"]

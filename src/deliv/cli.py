@@ -2,7 +2,7 @@
 
 import typer
 
-from deliv import __version__
+from deliv import __version__, dns_audit
 
 app = typer.Typer(
     name="deliv",
@@ -35,6 +35,9 @@ def root(
     ),
 ) -> None:
     """Email deliverability toolkit: graded, scriptable checks for marketers and developers."""
+
+
+app.command("dns-audit")(dns_audit.command)
 
 
 def main() -> None:

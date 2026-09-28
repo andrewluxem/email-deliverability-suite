@@ -1,0 +1,29 @@
+Return-Path: <bounces@mail.example.com>
+From: Example Outdoors <news@example.com>
+To: reader@example.net
+Subject: Your spring trail guide is ready
+Date: Tue, 10 Mar 2026 16:00:00 +0000
+Message-ID: <guide-2026-03@mail.example.com>
+List-Unsubscribe: <https://www.example.com/unsubscribe?u=123>, <mailto:unsub@example.com?subject=unsub-123>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="alt-boundary"
+
+--alt-boundary
+Content-Type: text/plain; charset="utf-8"
+
+Hi Jordan, the spring trail guide is ready.
+
+--alt-boundary
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<p>Hi Jordan, we rounded up the five trail routes our readers asked about most this winter, with
+elevation profiles, parking notes, and the best weekday windows to avoid crowds. Each route includes
+a printable map and a packing list you can save to your phone.</p>
+<p><a href="https://www.example.com/guides/spring">Read the spring guide</a></p>
+<p><a href="https://www.example.com/unsubscribe?u=123">Unsubscribe</a> |
+Example Outdoors Co., 123 Main Street, Suite 400, Springfield, IL 62701</p>
+</body></html>
+
+--alt-boundary--

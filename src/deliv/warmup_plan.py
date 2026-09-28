@@ -213,8 +213,8 @@ def make_plan(esp: ESP | str, start: int, target: int, days: int) -> dict[str, A
                 "Ramp length",
                 Status.WARN,
                 f"Reaching {target:,}/day in {days} days would need "
-                f"{((target / meta['effective_start']) ** (1 / max(days - 1, 1)) - 1):.0%} daily "
-                f"growth; {profile.label} guidance caps it near "
+                f"{((target / meta['effective_start']) ** (1 / max(days - 1, 1)) - 1):.1%} daily "
+                f"growth; {profile.label} guidance caps it at "
                 f"{profile.max_daily_growth - 1:.0%}. The plan runs {meta['plan_days']} days.",
                 "Keep the longer ramp, or split volume across more IPs or sending subdomains.",
                 "Warmup",

@@ -41,7 +41,7 @@ def test_too_fast_plan_is_extended_with_warning():
     assert len(result["plan"]) > 14
     checks = {f["check"]: f for f in result["findings"]}
     assert checks["Ramp length"]["status"] == "warn"
-    assert "30%" in checks["Ramp length"]["message"]
+    assert "caps it at 30%" in checks["Ramp length"]["message"]
 
 
 def test_large_start_is_clamped():

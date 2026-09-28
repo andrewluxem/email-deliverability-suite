@@ -388,17 +388,25 @@ def _findings(
             )
         )
     else:
-        findings.append(
-            Finding(
-                "Alignment",
-                Status.FAIL,
-                f"Neither a passing SPF domain ({alignment['envelope_from_domain']}) nor a passing "
-                f"DKIM domain matches the From domain ({alignment['from_domain']}).",
-                "Set up custom DKIM for your From domain in your ESP (d=your domain); optionally "
-                "a custom return-path on a subdomain so SPF aligns too.",
-                "Alignment",
+        spf_domain = alignment["envelope_from_domain"]
+        dkim_names = ", ".join(d["domain"] or "?" for d in alignment["dkim_domains"]) or "none"
+        if alignment["spf_aligned"] or alignment["dkim_aligned"]:
+            message = (
+                f"The aligned mechanisms did not pass: SPF domain {spf_domain} and DKIM "
+                f"domain(s) {dkim_names} line up with {alignment['from_domain']}, but the ones "
+                "that line up failed verification."
             )
-        )
+            fix = "Fix the failing SPF/DKIM result shown above; alignment itself is fine."
+        else:
+            message = (
+                f"Neither the SPF domain ({spf_domain}) nor the DKIM domain(s) ({dkim_names}) "
+                f"match the From domain ({alignment['from_domain']})."
+            )
+            fix = (
+                "Set up custom DKIM for your From domain in your ESP (d=your domain); optionally "
+                "a custom return-path on a subdomain so SPF aligns too."
+            )
+        findings.append(Finding("Alignment", Status.FAIL, message, fix, "Alignment"))
     return findings
 
 

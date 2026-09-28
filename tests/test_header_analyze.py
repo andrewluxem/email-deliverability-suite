@@ -186,3 +186,12 @@ def test_cli_human_and_json():
 
 def test_cli_missing_file():
     assert runner.invoke(app, ["header-analyze", "missing.eml"]).exit_code != 0
+
+
+def test_alignment_message_distinguishes_failed_vs_misaligned():
+    forwarded = checks(ha.analyze_file(FIXTURES / "forwarded_dkim_fail.eml"))["Alignment"]
+    assert (
+        "line up" in forwarded["message"] and "alignment itself is fine" in forwarded["remediation"]
+    )
+    esp = checks(ha.analyze_file(FIXTURES / "esp_misaligned.eml"))["Alignment"]
+    assert esp["message"].startswith("Neither the SPF domain (esp.example.net)")

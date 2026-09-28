@@ -1,0 +1,45 @@
+name: New check proposal
+description: Propose a new deliverability check, spam-trigger category, DNSBL, or bounce rule.
+labels: ["enhancement", "new-check"]
+body:
+  - type: dropdown
+    id: tool
+    attributes:
+      label: Which tool would this extend?
+      options:
+        - dns-audit
+        - spam-scan / spam_triggers.json
+        - copy-check
+        - header-analyze
+        - bounce-classify
+        - blacklist
+        - warmup-plan
+        - report
+        - new tool
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What deliverability problem does it catch?
+      description: Describe the real-world failure this check would have prevented.
+    validations:
+      required: true
+  - type: textarea
+    id: rule
+    attributes:
+      label: Proposed rule
+      description: Pass / warn / fail conditions, and the remediation hint a marketer would see.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: RFCs, mailbox provider documentation, or DNSBL policy pages that support the rule.
+  - type: checkboxes
+    id: tests
+    attributes:
+      label: Test plan
+      options:
+        - label: I can provide a fixture (with fictional domains only) that should trigger the check.

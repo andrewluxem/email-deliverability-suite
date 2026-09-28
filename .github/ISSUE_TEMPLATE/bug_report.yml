@@ -1,0 +1,40 @@
+name: Bug report
+description: A deliv command crashed, gave a wrong grade, or produced misleading output.
+labels: ["bug"]
+body:
+  - type: input
+    id: command
+    attributes:
+      label: Command you ran
+      description: Use a fictional domain (example.com) if the real one is private.
+      placeholder: deliv dns-audit example.com --json
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened instead
+      description: Paste the output. Remove any real customer data, addresses, or credentials first.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: deliv version
+      placeholder: output of `deliv --version`
+    validations:
+      required: true
+  - type: dropdown
+    id: python
+    attributes:
+      label: Python version
+      options: ["3.10", "3.11", "3.12", "other"]
+    validations:
+      required: true

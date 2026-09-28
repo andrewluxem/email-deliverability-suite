@@ -9,7 +9,9 @@ from deliv import (
     copy_check,
     dns_audit,
     header_analyze,
+    report,
     spam_scan,
+    warmup_plan,
 )
 
 app = typer.Typer(
@@ -51,6 +53,8 @@ app.command("copy-check")(copy_check.command)
 app.command("header-analyze")(header_analyze.command)
 app.command("bounce-classify")(bounce_classify.command)
 app.command("blacklist")(blacklist.command)
+app.command("warmup-plan")(warmup_plan.command)
+app.command("report")(report.command)
 
 
 def main() -> None:

@@ -195,8 +195,7 @@ def check_list(
                 blocklist.name,
                 blocklist.zone,
                 UNVERIFIED,
-                "not listed, but the list did not confirm its own test entry, so this answer "
-                "cannot be trusted from your resolver",
+                "no listing returned, but the list failed its own test query: result untrusted",
                 codes,
                 **base,
             )

@@ -1,0 +1,28 @@
+Return-Path: <bounces+123@mail.example.com>
+Delivered-To: reader@example.net
+Received: by 10.20.30.40 with SMTP id z1csp1234567;
+        Tue, 10 Mar 2026 09:00:05 -0700 (PDT)
+Received: from o1.mail.example.com (o1.mail.example.com [192.0.2.25])
+        by mx.example.net with ESMTPS id a1b2c3d4
+        for <reader@example.net>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Mar 2026 09:00:04 -0700 (PDT)
+Received: from app-internal (unknown [10.0.0.12])
+        by o1.mail.example.com (Postfix) with ESMTP id 4F2A1;
+        Tue, 10 Mar 2026 16:00:03 +0000 (UTC)
+Authentication-Results: mx.example.net;
+       dkim=pass header.i=@example.com header.s=k1 header.b=AbCdEf12;
+       spf=pass (mx.example.net: domain of bounces+123@mail.example.com designates 192.0.2.25 as permitted sender) smtp.mailfrom="bounces+123@mail.example.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=example.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=example.com; s=k1;
+        h=from:to:subject:date:message-id; bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=AbCdEf12
+From: Example Outdoors <news@example.com>
+To: reader@example.net
+Subject: Your spring trail guide is ready
+Date: Tue, 10 Mar 2026 16:00:00 +0000
+Message-ID: <guide-2026-03@mail.example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Hi Jordan, the spring trail guide is ready.

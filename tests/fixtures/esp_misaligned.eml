@@ -1,0 +1,19 @@
+Return-Path: <bounce-7781@esp.example.net>
+Received: from mta12.esp.example.net (mta12.esp.example.net [198.51.100.77])
+        by mx.example.org with ESMTPS id q9w8e7r6;
+        Wed, 11 Mar 2026 14:22:10 +0000
+Authentication-Results: mx.example.org;
+       spf=pass (mx.example.org: domain of bounce-7781@esp.example.net designates 198.51.100.77 as permitted sender) smtp.mailfrom=bounce-7781@esp.example.net;
+       dkim=pass header.d=esp.example.net header.s=s1 header.b=ZyXw9876;
+       dmarc=fail (p=QUARANTINE dis=QUARANTINE) header.from=example.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=esp.example.net; s=s1;
+        h=from:to:subject; bh=frcCV1k9oG9oKj3dpUqdJg1PxRT2RSN/XKdLCPjaYaY=; b=ZyXw9876
+From: Example Outdoors <news@example.com>
+To: shopper@example.org
+Subject: 20% off trail gear this week
+Date: Wed, 11 Mar 2026 14:22:00 +0000
+Message-ID: <promo-7781@esp.example.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Trail gear is 20% off through Sunday.

@@ -2,7 +2,14 @@
 
 import typer
 
-from deliv import __version__, copy_check, dns_audit, spam_scan
+from deliv import (
+    __version__,
+    bounce_classify,
+    copy_check,
+    dns_audit,
+    header_analyze,
+    spam_scan,
+)
 
 app = typer.Typer(
     name="deliv",
@@ -40,6 +47,8 @@ def root(
 app.command("dns-audit")(dns_audit.command)
 app.command("spam-scan")(spam_scan.command)
 app.command("copy-check")(copy_check.command)
+app.command("header-analyze")(header_analyze.command)
+app.command("bounce-classify")(bounce_classify.command)
 
 
 def main() -> None:

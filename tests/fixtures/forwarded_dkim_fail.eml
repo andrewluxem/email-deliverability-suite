@@ -1,0 +1,29 @@
+Return-Path: <alerts@example.org>
+Received: from relay.forwarder.example.net (relay.forwarder.example.net [203.0.113.50])
+        by mx.example.com with ESMTP id f0rw4rd3d;
+        Thu, 12 Mar 2026 08:15:42 +0000
+Received: from mail.example.org (mail.example.org [198.51.100.20])
+        by relay.forwarder.example.net with ESMTPS id r3l4y;
+        Thu, 12 Mar 2026 08:15:40 +0000
+Authentication-Results: mx.example.com;
+       spf=softfail (mx.example.com: domain of transitioning alerts@example.org does not designate 203.0.113.50 as permitted sender) smtp.mailfrom=alerts@example.org;
+       dkim=fail (body hash did not verify) header.d=example.org header.s=mail header.b=QrSt5678;
+       dmarc=fail (p=NONE dis=NONE) header.from=example.org
+Authentication-Results: relay.forwarder.example.net;
+       spf=pass smtp.mailfrom=alerts@example.org;
+       dkim=pass header.d=example.org header.s=mail;
+       dmarc=pass header.from=example.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=example.org; s=mail;
+        h=from:to:subject:date; bh=2jUSOH9NhtVGCQWNr9BrIAPreKQjO6Sn7XIkfJVOzv8=; b=QrSt5678
+From: Example Alerts <alerts@example.org>
+To: team@example.com
+Subject: Weekly account summary
+Date: Thu, 12 Mar 2026 08:15:30 +0000
+Message-ID: <summary-0312@example.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Your weekly summary is attached.
+
+-- 
+This message was forwarded by the example.net relay.

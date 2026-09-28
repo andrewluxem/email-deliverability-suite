@@ -2,7 +2,7 @@
 
 import typer
 
-from deliv import __version__, dns_audit
+from deliv import __version__, dns_audit, spam_scan
 
 app = typer.Typer(
     name="deliv",
@@ -38,6 +38,7 @@ def root(
 
 
 app.command("dns-audit")(dns_audit.command)
+app.command("spam-scan")(spam_scan.command)
 
 
 def main() -> None:

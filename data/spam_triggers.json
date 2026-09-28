@@ -1,4 +1,997 @@
 {
   "version": 1,
-  "categories": {}
+  "description": "Curated spam-trigger phrases for deliv spam-scan. Weights run 1 (mild) to 10 (near-certain filter hit). Phrases match case-insensitively on word boundaries; whitespace inside a phrase matches any run of spaces or line breaks. Each category's 'description' documents what it covers.",
+  "categories": {
+    "urgency": {
+      "description": "Pressure language that manufactures a deadline. Filters and readers both discount it.",
+      "phrases": [
+        {
+          "phrase": "act now",
+          "weight": 6,
+          "rewrite": "Say what happens and when: 'The sale ends Friday at midnight.'"
+        },
+        {
+          "phrase": "act immediately",
+          "weight": 6,
+          "rewrite": "State the real deadline instead."
+        },
+        {
+          "phrase": "urgent",
+          "weight": 5,
+          "rewrite": "Explain why the timing matters in plain words."
+        },
+        {
+          "phrase": "urgent response needed",
+          "weight": 7,
+          "rewrite": "Ask for a reply by a specific date and say why."
+        },
+        {
+          "phrase": "immediate action required",
+          "weight": 8,
+          "rewrite": "Describe the action and the real deadline."
+        },
+        {
+          "phrase": "action required",
+          "weight": 5,
+          "rewrite": "Name the action: 'Confirm your shipping address.'"
+        },
+        {
+          "phrase": "respond now",
+          "weight": 5,
+          "rewrite": "Invite a reply without pressure: 'Reply when you have a minute.'"
+        },
+        {
+          "phrase": "don't delay",
+          "weight": 5,
+          "rewrite": "Give the end date instead."
+        },
+        {
+          "phrase": "don't miss out",
+          "weight": 4,
+          "rewrite": "Say what the reader gets: 'Your 20% code works through Sunday.'"
+        },
+        {
+          "phrase": "last chance",
+          "weight": 5,
+          "rewrite": "Use the actual date: 'Final day: offer ends tonight.'"
+        },
+        {
+          "phrase": "final notice",
+          "weight": 7,
+          "rewrite": "Only use for genuine account notices; otherwise remove."
+        },
+        {
+          "phrase": "final warning",
+          "weight": 8,
+          "rewrite": "Remove threats; state the account status plainly."
+        },
+        {
+          "phrase": "expires today",
+          "weight": 4,
+          "rewrite": "Keep the date, drop the alarm: 'Ends today at 11:59 p.m. PT.'"
+        },
+        {
+          "phrase": "expires soon",
+          "weight": 4,
+          "rewrite": "Give the exact expiration date."
+        },
+        {
+          "phrase": "limited time only",
+          "weight": 5,
+          "rewrite": "Name the window: 'Through March 31.'"
+        },
+        {
+          "phrase": "limited time offer",
+          "weight": 5,
+          "rewrite": "Name the window: 'Offer runs through March 31.'"
+        },
+        {
+          "phrase": "offer expires",
+          "weight": 3,
+          "rewrite": "State the date: 'Offer ends March 31.'"
+        },
+        {
+          "phrase": "only a few left",
+          "weight": 4,
+          "rewrite": "Share the real inventory if true, or remove."
+        },
+        {
+          "phrase": "while supplies last",
+          "weight": 3,
+          "rewrite": "Remove, or give the actual quantity."
+        },
+        {
+          "phrase": "hurry",
+          "weight": 4,
+          "rewrite": "Remove; let the deadline speak for itself."
+        },
+        {
+          "phrase": "time is running out",
+          "weight": 5,
+          "rewrite": "Give the actual end time."
+        },
+        {
+          "phrase": "once in a lifetime",
+          "weight": 6,
+          "rewrite": "Describe the offer on its merits."
+        },
+        {
+          "phrase": "now or never",
+          "weight": 6,
+          "rewrite": "Give the real deadline."
+        },
+        {
+          "phrase": "apply now",
+          "weight": 4,
+          "rewrite": "Say what applying gets them: 'Start your application.'"
+        },
+        {
+          "phrase": "call now",
+          "weight": 5,
+          "rewrite": "Offer the number with context: 'Questions? Call us at...'"
+        },
+        {
+          "phrase": "order now",
+          "weight": 4,
+          "rewrite": "Use a specific CTA: 'Shop the spring collection.'"
+        },
+        {
+          "phrase": "buy now",
+          "weight": 4,
+          "rewrite": "Use a product-specific CTA: 'Get the starter kit.'"
+        },
+        {
+          "phrase": "get it now",
+          "weight": 4,
+          "rewrite": "Use a specific CTA tied to the product."
+        },
+        {
+          "phrase": "instant access",
+          "weight": 4,
+          "rewrite": "Say what they can access and how."
+        },
+        {
+          "phrase": "today only",
+          "weight": 4,
+          "rewrite": "Keep the date, soften the tone: 'Ends tonight.'"
+        },
+        {
+          "phrase": "before it's too late",
+          "weight": 6,
+          "rewrite": "Remove; state the deadline."
+        },
+        {
+          "phrase": "offer ends tonight",
+          "weight": 3,
+          "rewrite": "Fine for real deadlines; keep it to once per email."
+        }
+      ]
+    },
+    "money": {
+      "description": "Financial promises and cash language that spam filters weigh heavily.",
+      "phrases": [
+        {
+          "phrase": "make money",
+          "weight": 7,
+          "rewrite": "Describe the actual product or service value."
+        },
+        {
+          "phrase": "make money fast",
+          "weight": 9,
+          "rewrite": "Remove; describe the real opportunity with specifics."
+        },
+        {
+          "phrase": "earn extra cash",
+          "weight": 8,
+          "rewrite": "Describe the program honestly: 'Join our referral program.'"
+        },
+        {
+          "phrase": "extra income",
+          "weight": 7,
+          "rewrite": "Describe what the reader actually does and receives."
+        },
+        {
+          "phrase": "earn $",
+          "weight": 7,
+          "rewrite": "Remove the dollar promise; describe the offer."
+        },
+        {
+          "phrase": "cash bonus",
+          "weight": 6,
+          "rewrite": "Name the reward terms: 'Get a $20 credit after your first order.'"
+        },
+        {
+          "phrase": "fast cash",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "double your money",
+          "weight": 9,
+          "rewrite": "Remove; no legitimate offer promises this."
+        },
+        {
+          "phrase": "double your income",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "financial freedom",
+          "weight": 7,
+          "rewrite": "Describe concrete outcomes instead."
+        },
+        {
+          "phrase": "be your own boss",
+          "weight": 6,
+          "rewrite": "Describe the role or program specifically."
+        },
+        {
+          "phrase": "work from home",
+          "weight": 5,
+          "rewrite": "Describe the job and employer clearly."
+        },
+        {
+          "phrase": "million dollars",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "billion dollars",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "big bucks",
+          "weight": 7,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "cash out",
+          "weight": 5,
+          "rewrite": "Use 'withdraw' or 'redeem'."
+        },
+        {
+          "phrase": "pure profit",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "no hidden costs",
+          "weight": 4,
+          "rewrite": "State the price and what it includes."
+        },
+        {
+          "phrase": "no hidden fees",
+          "weight": 4,
+          "rewrite": "State the price and what it includes."
+        },
+        {
+          "phrase": "lowest price",
+          "weight": 4,
+          "rewrite": "Show the price and comparison instead."
+        },
+        {
+          "phrase": "best price",
+          "weight": 3,
+          "rewrite": "Show the actual price."
+        },
+        {
+          "phrase": "save big",
+          "weight": 4,
+          "rewrite": "Give the actual savings: 'Save $15 on orders over $75.'"
+        },
+        {
+          "phrase": "save up to",
+          "weight": 3,
+          "rewrite": "Give a concrete example of the savings."
+        },
+        {
+          "phrase": "huge discount",
+          "weight": 4,
+          "rewrite": "State the discount: '25% off'."
+        },
+        {
+          "phrase": "cheap",
+          "weight": 3,
+          "rewrite": "Use 'affordable' or show the price."
+        },
+        {
+          "phrase": "bargain",
+          "weight": 2,
+          "rewrite": "Show the price and what makes it a good deal."
+        },
+        {
+          "phrase": "credit card offers",
+          "weight": 7,
+          "rewrite": "Name the specific card and terms."
+        },
+        {
+          "phrase": "low interest",
+          "weight": 5,
+          "rewrite": "Give the APR and terms."
+        },
+        {
+          "phrase": "refinance",
+          "weight": 5,
+          "rewrite": "Keep only if you are a lender writing to opted-in customers."
+        },
+        {
+          "phrase": "consolidate debt",
+          "weight": 7,
+          "rewrite": "Remove unless you are a regulated lender writing to customers."
+        },
+        {
+          "phrase": "eliminate debt",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "pre-approved",
+          "weight": 6,
+          "rewrite": "Say 'You may qualify' and link to terms."
+        },
+        {
+          "phrase": "investment opportunity",
+          "weight": 7,
+          "rewrite": "Describe the product and its risks with required disclosures."
+        },
+        {
+          "phrase": "risk-free investment",
+          "weight": 9,
+          "rewrite": "Remove; no investment is risk-free."
+        },
+        {
+          "phrase": "wire transfer",
+          "weight": 6,
+          "rewrite": "Avoid in marketing mail; phishing uses it constantly."
+        },
+        {
+          "phrase": "money back",
+          "weight": 3,
+          "rewrite": "State the refund policy: '30-day returns'."
+        }
+      ]
+    },
+    "free": {
+      "description": "Freebie language. One mention is fine; stacking them reads as spam.",
+      "phrases": [
+        {
+          "phrase": "100% free",
+          "weight": 7,
+          "rewrite": "Say 'at no cost' once, near the offer details."
+        },
+        {
+          "phrase": "absolutely free",
+          "weight": 6,
+          "rewrite": "Say 'no cost' once, with the conditions."
+        },
+        {
+          "phrase": "completely free",
+          "weight": 6,
+          "rewrite": "Say 'no cost' once, with the conditions."
+        },
+        {
+          "phrase": "totally free",
+          "weight": 6,
+          "rewrite": "Say 'no cost' once, with the conditions."
+        },
+        {
+          "phrase": "free gift",
+          "weight": 5,
+          "rewrite": "Name the gift: 'a travel pouch with orders over $50'."
+        },
+        {
+          "phrase": "free money",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "free cash",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "free access",
+          "weight": 4,
+          "rewrite": "Describe what access includes and for how long."
+        },
+        {
+          "phrase": "free trial",
+          "weight": 2,
+          "rewrite": "Fine in moderation; add the trial length and terms."
+        },
+        {
+          "phrase": "free offer",
+          "weight": 5,
+          "rewrite": "Describe the offer itself."
+        },
+        {
+          "phrase": "free consultation",
+          "weight": 3,
+          "rewrite": "Say 'Book a 20-minute call'."
+        },
+        {
+          "phrase": "free quote",
+          "weight": 3,
+          "rewrite": "Say 'Get a quote'."
+        },
+        {
+          "phrase": "free sample",
+          "weight": 3,
+          "rewrite": "Name the sample."
+        },
+        {
+          "phrase": "free membership",
+          "weight": 4,
+          "rewrite": "Describe the membership benefits."
+        },
+        {
+          "phrase": "free info",
+          "weight": 5,
+          "rewrite": "Describe the resource: 'Download the checklist'."
+        },
+        {
+          "phrase": "free installation",
+          "weight": 3,
+          "rewrite": "State it as part of the offer terms."
+        },
+        {
+          "phrase": "free shipping",
+          "weight": 1,
+          "rewrite": "Usually fine; keep it to one mention."
+        },
+        {
+          "phrase": "free preview",
+          "weight": 3,
+          "rewrite": "Say 'Preview the first chapter'."
+        },
+        {
+          "phrase": "free investment",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "free bonus",
+          "weight": 5,
+          "rewrite": "Name the bonus item."
+        },
+        {
+          "phrase": "free instant",
+          "weight": 6,
+          "rewrite": "Remove the stacking; describe the item."
+        },
+        {
+          "phrase": "claim your free",
+          "weight": 6,
+          "rewrite": "Say 'Pick up your welcome gift'."
+        },
+        {
+          "phrase": "get it free",
+          "weight": 5,
+          "rewrite": "State the condition: 'Included with your order'."
+        },
+        {
+          "phrase": "for free",
+          "weight": 3,
+          "rewrite": "Say 'at no extra cost'."
+        },
+        {
+          "phrase": "no cost",
+          "weight": 2,
+          "rewrite": "Fine once; keep terms nearby."
+        },
+        {
+          "phrase": "no fees",
+          "weight": 3,
+          "rewrite": "State the price structure."
+        },
+        {
+          "phrase": "no obligation",
+          "weight": 4,
+          "rewrite": "Say 'Cancel anytime' and link to terms."
+        },
+        {
+          "phrase": "no strings attached",
+          "weight": 5,
+          "rewrite": "State the actual terms."
+        },
+        {
+          "phrase": "prize",
+          "weight": 5,
+          "rewrite": "Describe the sweepstakes with official rules linked."
+        },
+        {
+          "phrase": "you have been selected",
+          "weight": 8,
+          "rewrite": "Remove; say why the reader is getting this email."
+        },
+        {
+          "phrase": "you're a winner",
+          "weight": 9,
+          "rewrite": "Remove unless announcing a real contest result with rules."
+        },
+        {
+          "phrase": "congratulations you won",
+          "weight": 9,
+          "rewrite": "Remove unless announcing a real contest result with rules."
+        }
+      ]
+    },
+    "health": {
+      "description": "Medical and weight-loss claims that trigger both filters and regulators.",
+      "phrases": [
+        {
+          "phrase": "lose weight",
+          "weight": 6,
+          "rewrite": "Describe the product without outcome promises."
+        },
+        {
+          "phrase": "lose weight fast",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "weight loss",
+          "weight": 5,
+          "rewrite": "Describe the program factually; avoid outcome claims."
+        },
+        {
+          "phrase": "burn fat",
+          "weight": 6,
+          "rewrite": "Describe ingredients or the program factually."
+        },
+        {
+          "phrase": "fat burning",
+          "weight": 6,
+          "rewrite": "Describe the product factually."
+        },
+        {
+          "phrase": "miracle cure",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "miracle",
+          "weight": 6,
+          "rewrite": "Describe the product factually."
+        },
+        {
+          "phrase": "cure",
+          "weight": 5,
+          "rewrite": "Avoid cure claims; describe what the product does."
+        },
+        {
+          "phrase": "anti-aging",
+          "weight": 4,
+          "rewrite": "Describe the ingredients and intended use."
+        },
+        {
+          "phrase": "reverses aging",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "no prescription needed",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "online pharmacy",
+          "weight": 8,
+          "rewrite": "Remove unless you are a licensed pharmacy writing to customers."
+        },
+        {
+          "phrase": "prescription drugs",
+          "weight": 7,
+          "rewrite": "Remove unless you are a licensed provider."
+        },
+        {
+          "phrase": "viagra",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "cialis",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "male enhancement",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "enlargement",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "diet pills",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "appetite suppressant",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "cellulite",
+          "weight": 4,
+          "rewrite": "Describe the product factually."
+        },
+        {
+          "phrase": "clinically proven",
+          "weight": 5,
+          "rewrite": "Cite the study or remove."
+        },
+        {
+          "phrase": "doctor recommended",
+          "weight": 5,
+          "rewrite": "Name the source or remove."
+        },
+        {
+          "phrase": "hair loss",
+          "weight": 4,
+          "rewrite": "Describe the product factually."
+        },
+        {
+          "phrase": "stop snoring",
+          "weight": 5,
+          "rewrite": "Describe the product factually."
+        },
+        {
+          "phrase": "detox",
+          "weight": 4,
+          "rewrite": "Describe the ingredients factually."
+        },
+        {
+          "phrase": "cleanse",
+          "weight": 3,
+          "rewrite": "Describe the product factually."
+        },
+        {
+          "phrase": "lower cholesterol",
+          "weight": 6,
+          "rewrite": "Remove health outcome claims."
+        },
+        {
+          "phrase": "cures",
+          "weight": 6,
+          "rewrite": "Remove cure claims."
+        }
+      ]
+    },
+    "adult": {
+      "description": "Adult and dating language that most corporate and consumer filters block outright.",
+      "phrases": [
+        {
+          "phrase": "adults only",
+          "weight": 7,
+          "rewrite": "Remove from marketing mail."
+        },
+        {
+          "phrase": "xxx",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "hot singles",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "singles in your area",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "meet local singles",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "sexy singles",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "explicit content",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "18+ only",
+          "weight": 7,
+          "rewrite": "Remove from marketing mail."
+        },
+        {
+          "phrase": "uncensored",
+          "weight": 6,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "naughty",
+          "weight": 5,
+          "rewrite": "Choose a different word."
+        },
+        {
+          "phrase": "erotic",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "live cams",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "webcam chat",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "casual encounter",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "discreet encounters",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "intimate photos",
+          "weight": 9,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "mature content",
+          "weight": 6,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "hookup",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "find a date tonight",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "see who viewed your profile",
+          "weight": 5,
+          "rewrite": "Name your service and the specific notification."
+        }
+      ]
+    },
+    "shady": {
+      "description": "Phishing-adjacent language. Legitimate brands rarely need it; phishing kits always do.",
+      "phrases": [
+        {
+          "phrase": "verify your account",
+          "weight": 8,
+          "rewrite": "Link to your normal sign-in page and explain why."
+        },
+        {
+          "phrase": "confirm your account",
+          "weight": 6,
+          "rewrite": "Say what needs confirming and why."
+        },
+        {
+          "phrase": "update your payment",
+          "weight": 7,
+          "rewrite": "Tell the reader to sign in to their account; avoid direct payment links."
+        },
+        {
+          "phrase": "update your billing information",
+          "weight": 7,
+          "rewrite": "Tell the reader to sign in to their account."
+        },
+        {
+          "phrase": "confirm your password",
+          "weight": 10,
+          "rewrite": "Remove; never ask for passwords by email."
+        },
+        {
+          "phrase": "reset your password immediately",
+          "weight": 9,
+          "rewrite": "Only send password resets the user requested."
+        },
+        {
+          "phrase": "your account has been suspended",
+          "weight": 9,
+          "rewrite": "Only for real account notices, sent transactionally."
+        },
+        {
+          "phrase": "your account will be closed",
+          "weight": 9,
+          "rewrite": "Only for real account notices, sent transactionally."
+        },
+        {
+          "phrase": "unusual activity",
+          "weight": 7,
+          "rewrite": "Only in real security notices; say what happened."
+        },
+        {
+          "phrase": "suspicious activity",
+          "weight": 7,
+          "rewrite": "Only in real security notices; say what happened."
+        },
+        {
+          "phrase": "security alert",
+          "weight": 6,
+          "rewrite": "Only in real security notices."
+        },
+        {
+          "phrase": "login attempt",
+          "weight": 6,
+          "rewrite": "Only in real security notices."
+        },
+        {
+          "phrase": "click here",
+          "weight": 5,
+          "rewrite": "Use descriptive link text: 'See the new arrivals'."
+        },
+        {
+          "phrase": "click below",
+          "weight": 4,
+          "rewrite": "Use descriptive link text."
+        },
+        {
+          "phrase": "click to remove",
+          "weight": 7,
+          "rewrite": "Use a clear 'Unsubscribe' link."
+        },
+        {
+          "phrase": "this is not spam",
+          "weight": 9,
+          "rewrite": "Remove; it is a classic spam tell."
+        },
+        {
+          "phrase": "not junk",
+          "weight": 8,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "this isn't a scam",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "not a scam",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "dear friend",
+          "weight": 6,
+          "rewrite": "Use the recipient's name or a neutral greeting."
+        },
+        {
+          "phrase": "dear sir or madam",
+          "weight": 5,
+          "rewrite": "Use the recipient's name or a neutral greeting."
+        },
+        {
+          "phrase": "dear valued customer",
+          "weight": 5,
+          "rewrite": "Use the recipient's name."
+        },
+        {
+          "phrase": "undisclosed recipient",
+          "weight": 8,
+          "rewrite": "Send individually addressed messages."
+        },
+        {
+          "phrase": "social security number",
+          "weight": 9,
+          "rewrite": "Never request it by email."
+        },
+        {
+          "phrase": "bank account details",
+          "weight": 9,
+          "rewrite": "Never request them by email."
+        },
+        {
+          "phrase": "send your details",
+          "weight": 8,
+          "rewrite": "Link to a secure form on your own domain."
+        },
+        {
+          "phrase": "gift card payment",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "pay with gift cards",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "inheritance",
+          "weight": 7,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "beneficiary",
+          "weight": 6,
+          "rewrite": "Remove unless it is a real policy communication."
+        },
+        {
+          "phrase": "nigerian prince",
+          "weight": 10,
+          "rewrite": "Remove."
+        },
+        {
+          "phrase": "100% guaranteed",
+          "weight": 7,
+          "rewrite": "State the actual guarantee terms."
+        },
+        {
+          "phrase": "guaranteed",
+          "weight": 3,
+          "rewrite": "State the guarantee terms precisely."
+        },
+        {
+          "phrase": "risk-free",
+          "weight": 5,
+          "rewrite": "State the return policy instead."
+        },
+        {
+          "phrase": "no catch",
+          "weight": 6,
+          "rewrite": "State the terms."
+        },
+        {
+          "phrase": "as seen on",
+          "weight": 5,
+          "rewrite": "Name the publication and link the coverage."
+        },
+        {
+          "phrase": "special promotion",
+          "weight": 3,
+          "rewrite": "Name the promotion."
+        },
+        {
+          "phrase": "you've been chosen",
+          "weight": 8,
+          "rewrite": "Say why the reader is getting this email."
+        }
+      ]
+    },
+    "formatting": {
+      "description": "Formatting patterns (not phrases). spam-scan evaluates these with pattern checks; the weights below set how much each pattern costs.",
+      "phrases": [],
+      "patterns": {
+        "shouting_words": {
+          "weight": 2,
+          "description": "Words of 4+ letters in ALL CAPS (per word, capped at 5).",
+          "rewrite": "Use sentence case; emphasize with layout, not capitals."
+        },
+        "exclamation_runs": {
+          "weight": 3,
+          "description": "Two or more exclamation marks in a row (per run, capped at 4).",
+          "rewrite": "Use one exclamation mark at most, or none."
+        },
+        "question_exclamation": {
+          "weight": 3,
+          "description": "Mixed ?! or !? punctuation (per run, capped at 3).",
+          "rewrite": "Pick one punctuation mark."
+        },
+        "dollar_runs": {
+          "weight": 4,
+          "description": "Repeated currency symbols such as $$$ (per run, capped at 3).",
+          "rewrite": "Show the actual price or savings amount."
+        },
+        "percent_off_stack": {
+          "weight": 2,
+          "description": "Three or more 'NN% off' claims in one message.",
+          "rewrite": "Lead with one clear offer."
+        }
+      }
+    }
+  }
 }

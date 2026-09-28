@@ -114,6 +114,8 @@ def test_cli_human_output(monkeypatch):
 
 
 def test_help_is_marketer_readable():
-    result = runner.invoke(app, ["dns-audit", "--help"])
+    # CI forces rich color, which splits "--selector" with ANSI codes; compare plain text.
+    result = runner.invoke(app, ["dns-audit", "--help"], env={"COLUMNS": "200"})
     assert result.exit_code == 0
-    assert "SPF" in result.output and "--selector" in result.output
+    text = unstyle(result.output)
+    assert "SPF" in text and "--selector" in text

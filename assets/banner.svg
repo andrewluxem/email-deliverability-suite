@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300" role="img" aria-labelledby="t d">
+<title id="t">email-deliverability-suite</title>
+<desc id="d">Three panels. 1, the repo's test fixture promo_spammy.html drawn as an email: ACT NOW!!! Limited time offer, This is not spam, Make money fast with our 100% free program, a Click here link, and no footer. 2, real output of deliv copy-check on that file: Verdict FAIL, exit code 2, Spam risk Grade F (39/100), and four FAIL rows: Spam score, Punctuation, Link shorteners, Unsubscribe link. 3, the clean fixture newsletter_clean.html with its unsubscribe link and postal address in the footer; copy-check prints Verdict PASS, exit code 0.</desc>
+<style>
+.serif{font-family:Georgia,"Times New Roman",serif}
+.sans{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+.lab{font-size:10px;letter-spacing:1.8px;font-weight:600}
+.cap{font-size:11.5px;fill:#8b9096}
+.hl{fill:none;stroke-width:1.5;opacity:0}
+.h1{animation:h1 12s infinite}
+.h2{animation:h2 12s infinite}
+.h3{animation:h3 12s infinite}
+.rb{animation:rb 12s infinite}
+.rc{animation:rc 12s infinite}
+.rd{animation:rd 12s infinite}
+.re{animation:re 12s infinite}
+.rf{animation:rf 12s infinite}
+.rg{animation:rg 12s infinite}
+.rh{animation:rh 12s infinite}
+.ri{animation:ri 12s infinite}
+.rk{animation:rk 12s infinite}
+@keyframes h1{0%,28%{opacity:1}30%,98%{opacity:0}100%{opacity:1}}
+@keyframes h2{0%,30%{opacity:0}32%,58%{opacity:1}60%,100%{opacity:0}}
+@keyframes h3{0%,60%{opacity:0}62%,90%{opacity:1}92%,100%{opacity:0}}
+@keyframes rb{0%,31%{opacity:0}33%,96%{opacity:1}100%{opacity:0}}
+@keyframes rc{0%,34%{opacity:0}36%,96%{opacity:1}100%{opacity:0}}
+@keyframes rd{0%,39%{opacity:0}41%,96%{opacity:1}100%{opacity:0}}
+@keyframes re{0%,43%{opacity:0}45%,96%{opacity:1}100%{opacity:0}}
+@keyframes rf{0%,47%{opacity:0}49%,96%{opacity:1}100%{opacity:0}}
+@keyframes rg{0%,51%{opacity:0}53%,96%{opacity:1}100%{opacity:0}}
+@keyframes rh{0%,62%{opacity:0}64%,96%{opacity:1}100%{opacity:0}}
+@keyframes ri{0%,68%{opacity:0}70%,96%{opacity:1}100%{opacity:0}}
+@keyframes rk{0%,75%{opacity:0}77%,96%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<rect width="900" height="300" fill="#141618"/>
+
+<text x="32" y="50" class="serif" font-size="28" fill="#e4dfd4">email-deliverability-suite</text>
+<text x="365" y="50" class="sans" font-size="13.5" fill="#a9adb2">Tested Python CLI for email deliverability</text>
+
+<g>
+<text x="32" y="88" class="sans lab" fill="#a39bbd">1 · A PROMO DRAFT</text>
+<rect x="32" y="98" width="242" height="152" rx="3" fill="#1b1e21" stroke="#2e3237"/>
+<rect class="hl h1" x="32" y="98" width="242" height="152" rx="3" stroke="#a39bbd"/>
+<text x="44" y="115" class="mono" font-size="10" fill="#8b9096">tests/fixtures/promo_spammy.html</text>
+<line x1="33" y1="123" x2="273" y2="123" stroke="#2e3237"/>
+<text x="44" y="146" class="serif" font-size="13" font-weight="700" fill="#e4dfd4">ACT NOW!!! Limited time offer</text>
+<g class="serif" font-size="10.5" fill="#e4dfd4">
+<text x="44" y="164">Click here to claim your free gift.</text><text x="44" y="177">This is not spam.</text>
+<text x="44" y="194">Make money fast with our 100% free</text><text x="44" y="207">program. $$$</text>
+<text x="44" y="224"><tspan text-decoration="underline">Click here</tspan> before it's too late.</text>
+</g>
+<rect class="rd" x="41" y="167" width="86" height="14" fill="none" stroke="#c8963e" stroke-dasharray="3 2"/>
+<rect class="re" x="106" y="134" width="22" height="16" fill="none" stroke="#c8963e" stroke-dasharray="3 2"/>
+<rect class="rf" x="41" y="214" width="50" height="14" fill="none" stroke="#c8963e" stroke-dasharray="3 2"/>
+<rect class="rg" x="41" y="232" width="224" height="12" fill="none" stroke="#c8963e" stroke-dasharray="3 2"/>
+<text x="32" y="272" class="sans cap">Spam phrases, a bit.ly link, no unsubscribe.</text>
+</g>
+
+<g>
+<text x="294" y="88" class="sans lab" fill="#c8963e">2 · COPY-CHECK GATES IT</text>
+<rect x="294" y="98" width="292" height="152" rx="3" fill="#17191c" stroke="#2e3237"/>
+<rect class="hl h2" x="294" y="98" width="292" height="152" rx="3" stroke="#c8963e"/>
+<g class="mono" font-size="10" fill="#e4dfd4">
+<text class="rb" x="306" y="118" fill="#8b9096">$ deliv copy-check promo_spammy.html</text>
+<g class="rc"><text x="306" y="136">Pre-send QA report: promo_spammy.html</text>
+<rect x="360" y="144" width="36.2" height="13" rx="2" fill="#c8963e"/>
+<text x="306" y="154" xml:space="preserve">Verdict:  <tspan fill="#141618" font-weight="700">FAIL</tspan>   (exit code 2)</text>
+<text x="306" y="171">Spam risk: <tspan fill="#c8963e">Grade F (39/100)</tspan></text></g>
+<text class="rd" x="306" y="192" xml:space="preserve"><tspan fill="#c8963e">FAIL</tspan>  Spam score</text>
+<text class="re" x="306" y="207" xml:space="preserve"><tspan fill="#c8963e">FAIL</tspan>  Punctuation</text>
+<text class="rf" x="306" y="222" xml:space="preserve"><tspan fill="#c8963e">FAIL</tspan>  Link shorteners</text>
+<text class="rg" x="306" y="237" xml:space="preserve"><tspan fill="#c8963e">FAIL</tspan>  Unsubscribe link</text>
+</g>
+<text x="294" y="272" class="sans cap">Exit code 2 fails the CI step.</text>
+</g>
+
+<g>
+<text x="606" y="88" class="sans lab" fill="#93ad8c">3 · A CLEAN NEWSLETTER</text>
+<rect x="606" y="98" width="262" height="152" rx="3" fill="#1b1e21" stroke="#2e3237"/>
+<rect class="hl h3" x="606" y="98" width="262" height="152" rx="3" stroke="#93ad8c"/>
+<text x="618" y="115" class="mono" font-size="10" fill="#8b9096">tests/fixtures/newsletter_clean.html</text>
+<line x1="607" y1="123" x2="867" y2="123" stroke="#2e3237"/>
+<g class="rh"><text x="618" y="146" class="serif" font-size="14" font-weight="700" fill="#e4dfd4">The spring field guide is here</text>
+<g fill="#3d4248"><rect x="618" y="154" width="228" height="3"/><rect x="618" y="160" width="220" height="3"/><rect x="618" y="166" width="150" height="3"/>
+<rect x="618" y="176" width="224" height="3"/><rect x="618" y="182" width="132" height="3"/></g></g>
+<g class="ri"><g class="serif" font-size="10" fill="#a9adb2">
+<text x="618" y="210"><tspan text-decoration="underline">Unsubscribe</tspan> or <tspan text-decoration="underline">manage preferences</tspan>.</text>
+<text x="618" y="224">Example Outdoors Co., 123 Main Street,</text><text x="618" y="237">Suite 400, Springfield, IL 62701</text></g>
+<rect x="613" y="198" width="248" height="45" fill="none" stroke="#93ad8c" stroke-dasharray="3 2"/></g>
+<g class="rk"><rect x="665.6" y="262" width="39.7" height="14" rx="2" fill="#93ad8c"/><text x="606" y="272" class="mono" font-size="11" fill="#93ad8c" xml:space="preserve">Verdict:  <tspan fill="#141618" font-weight="700">PASS</tspan>   (exit code 0)</text></g>
+</g>
+</svg>

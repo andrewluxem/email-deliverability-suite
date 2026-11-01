@@ -39,6 +39,15 @@ def test_policy_strength(policy, status):
 
 
 @pytest.mark.parametrize(
+    ("policy", "wording"),
+    [("quarantine", "failing mail is quarantined,"), ("reject", "failing mail is rejected,")],
+)
+def test_enforcing_policy_wording(policy, wording):
+    checks, _ = run(f"v=DMARC1; p={policy}; rua=mailto:d@example.com")
+    assert wording in checks["DMARC policy"].message
+
+
+@pytest.mark.parametrize(
     ("pct", "status"),
     [("100", Status.PASS), ("25", Status.WARN), ("abc", Status.WARN), ("150", Status.WARN)],
 )

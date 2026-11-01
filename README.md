@@ -12,7 +12,7 @@ you can act on. It is not a docs repo or a thin scanner.
 - **Graded and explained:** every check returns PASS, WARN, or FAIL with a plain-English reason and a fix. The
   results roll up into a 0-100 score and an A-F grade.
 - **Scriptable:** every command takes `--json`. `copy-check` exits 0/1/2 so it can gate a CI pipeline or ESP hook.
-- **Tested:** about 300 tests, all offline. DNS, HTTP, and sockets are mocked at the boundary, and CI runs ruff
+- **Tested:** 298 tests, all offline. DNS, HTTP, and sockets are mocked at the boundary, and CI runs ruff
   and pytest on Python 3.10, 3.11, and 3.12.
 - **Agent-ready:** ships a [Claude Code skill](skills/deliverability/SKILL.md) that teaches an agent when to run
   each command and how to read the results.
@@ -36,17 +36,19 @@ The runtime dependencies are [Typer](https://typer.tiangolo.com/) and [dnspython
 
 ## Quickstart
 
+Run these from a clone of this repo; the sample files are the test fixtures in `tests/fixtures/`.
+
 ```bash
-deliv dns-audit example.com                  # grade SPF, DKIM, DMARC, BIMI, MTA-STS, TLS-RPT
-deliv copy-check campaign.html               # PASS / REVIEW / FAIL before you hit send
-deliv header-analyze delivered.eml           # why did this land in spam?
+deliv dns-audit example.com                            # grade SPF, DKIM, DMARC, BIMI, MTA-STS, TLS-RPT
+deliv copy-check tests/fixtures/promo_spammy.html      # PASS / REVIEW / FAIL before you hit send
+deliv header-analyze tests/fixtures/esp_misaligned.eml # why did this land in spam?
 deliv bounce-classify "550 5.1.1 user unknown"
 deliv blacklist 192.0.2.25
 deliv warmup-plan --esp gmail --start-volume 50 --target-volume 50000 --days 30
 
 # One shareable report from several runs
 deliv dns-audit example.com --json > dns.json
-deliv copy-check campaign.html --json > qa.json
+deliv copy-check tests/fixtures/promo_spammy.html --json > qa.json
 deliv report -i dns.json -i qa.json --format html -o deliverability-report.html
 ```
 
@@ -54,7 +56,9 @@ Run `deliv <command> --help` for the options of any command.
 
 ## The tools
 
-All sample output below is real `deliv` output. The domains, IPs, and messages are fictional.
+All sample output below is real `deliv` output, run from the repo root. The files are the test fixtures in
+`tests/fixtures/`, and their domains, IPs, and messages are fictional. `dns-audit` and `blacklist` query live DNS,
+so their samples (run on 2026-10-31 against the reserved `example.com` and `192.0.2.25`) can change over time.
 
 ### `deliv dns-audit <domain>`
 
@@ -75,25 +79,26 @@ This checks the DNS records that decide inbox placement:
 $ deliv dns-audit example.com
 DNS authentication audit: example.com
 =====================================
-Grade B (80/100)   7 passed, 4 warnings, 0 failed across SPF, DKIM, DMARC, BIMI, MTA-STS, and TLS-RPT.
+Grade B (88/100)   7 passed, 4 warnings, 0 failed across SPF, DKIM, DMARC, BIMI, MTA-STS, and TLS-RPT.
 
 SPF
-  PASS  SPF record   Valid SPF record: v=spf1 include:_spf.esp.example.net ~all
-  PASS  SPF lookups  SPF uses 1 of 10 allowed DNS lookups.
-  PASS  SPF policy   SPF ends in ~all: unlisted senders soft fail (DMARC does the enforcing).
+  PASS  SPF record   Valid SPF record: v=spf1 -all
+  PASS  SPF lookups  SPF uses 0 of 10 allowed DNS lookups.
+  PASS  SPF policy   SPF ends in -all: unlisted senders hard fail.
 
 DKIM
-  WARN  DKIM  DKIM found at selector1, but selector1 uses a 1024-bit key.
-              fix: Rotate to a 2048-bit RSA key at your next key rotation.
+  WARN  DKIM  Only revoked (empty) DKIM keys found at: google, selector1, selector2, default, k1, k2, dkim.
+              fix: Find your ESP's selector in its DNS setup page and rerun with --selector <name>. If you have none, enable custom DKIM signing for this domain.
 
 DMARC
-  PASS  DMARC record      Valid DMARC record: v=DMARC1; p=none; rua=mailto:dmarc@example.com
-  WARN  DMARC policy      Policy is p=none: you get reports, but spoofed mail is still delivered.
-                          fix: Review rua reports, fix any legitimate senders that fail, then move to p=quarantine and later p=reject.
+  PASS  DMARC record      Valid DMARC record: v=DMARC1;p=reject;sp=reject;adkim=s;aspf=s
+  PASS  DMARC policy      Policy is p=reject: failing mail is rejectd, which blocks spoofing.
   PASS  DMARC pct         Policy applies to 100% of failing mail.
-  PASS  DMARC reporting   Aggregate reports go to mailto:dmarc@example.com; no ruf= (few receivers send them anyway).
-  PASS  DMARC subdomains  Subdomains inherit p=none (no sp= tag).
-  INFO  DMARC alignment   DKIM alignment is relaxed, SPF alignment is relaxed.
+  WARN  DMARC reporting   No rua= address, so you receive no aggregate reports and fly blind.
+                          fix: Add rua=mailto:dmarc-reports@example.com (or your DMARC vendor's address).
+  PASS  DMARC subdomains  Subdomain policy is sp=reject.
+  INFO  DMARC alignment   DKIM alignment is strict, SPF alignment is strict.
+                          fix: Relaxed alignment is right for most senders; strict breaks mail sent from subdomains.
 
 BIMI
   INFO  BIMI  No BIMI record (optional: shows your logo beside messages in supporting inboxes).
@@ -123,9 +128,9 @@ two phrases overlap, only the heavier one counts. A repeated phrase adds less ea
 subject line counts 1.5x.
 
 ```text
-$ deliv spam-scan promo.html
-Spam-risk scan: promo.html (HTML input)
-=======================================
+$ deliv spam-scan tests/fixtures/promo_spammy.html
+Spam-risk scan: tests/fixtures/promo_spammy.html (HTML input)
+=============================================================
 Grade F (39/100)   11 trigger matches across 5 categories.
 
 Category breakdown
@@ -184,9 +189,9 @@ This is the open-source version of an enterprise pre-send QA workflow. It runs `
 | (error) | 3 | The input file could not be read. |
 
 ```text
-$ deliv copy-check promo.html
-Pre-send QA report: promo.html
-==============================
+$ deliv copy-check tests/fixtures/promo_spammy.html
+Pre-send QA report: tests/fixtures/promo_spammy.html
+====================================================
 Verdict:  FAIL   (exit code 2)
 Spam risk: Grade F (39/100)
 
@@ -234,9 +239,9 @@ find the external sending IP. It then compares the From domain with the envelope
 check DMARC alignment, and ends with a diagnosis.
 
 ```text
-$ deliv header-analyze promo.eml
-Header analysis: promo.eml
-==========================
+$ deliv header-analyze tests/fixtures/esp_misaligned.eml
+Header analysis: tests/fixtures/esp_misaligned.eml
+==================================================
 Subject: 20% off trail gear this week
 
 Authentication results (per reporting server)
@@ -325,20 +330,17 @@ response, or a refused query becomes a warning. The command never crashes on the
 $ deliv blacklist 192.0.2.25
 Blocklist check: 192.0.2.25 (ip)
 ================================
-Grade D (67/100)   Listed on 1 of 6 blocklists. 1 list(s) could not give a trustworthy answer.
+Grade A (100/100)   Not listed on any of the 5 lists that answered. 1 list(s) could not give a trustworthy answer.
 
 List            Zone                    Result      Details
---------------  ----------------------  ----------  ------------------------------------------------------------------------------
-Spamhaus ZEN    zen.spamhaus.org        UNVERIFIED  no listing returned, but the list failed its own test query: result untrusted
+--------------  ----------------------  ----------  --------------------------------------------------------------
+Spamhaus ZEN    zen.spamhaus.org        ERROR       query refused: public or open resolver (use your own resolver)
 Barracuda BRBL  b.barracudacentral.org  not listed
-SpamCop         bl.spamcop.net          LISTED      listed (return code 127.0.0.2)
+SpamCop         bl.spamcop.net          not listed
 PSBL            psbl.surriel.com        not listed
 Mailspike BL    bl.mailspike.net        not listed
 UCEPROTECT L1   dnsbl-1.uceprotect.net  not listed
 SORBS           dnsbl.sorbs.net         skipped     Skipped: this list has been retired.
-
-Delisting
-  SpamCop: https://www.spamcop.net/bl.shtml
 ```
 
 By default, `deliv` also asks each list about its own published test entry. If a list does not report its test
@@ -397,6 +399,11 @@ Total messages across the ramp: 71,920
 
 Daily gate
   Advance to the next day's volume only if the previous day had a bounce rate under 2%, a spam complaint rate under 0.1%, and no spike in 4xx deferrals. Otherwise repeat the previous day's volume until the numbers recover.
+
+Gmail notes
+  - Register the domain in Google Postmaster Tools before day 1 and check domain and IP reputation daily.
+  - Gmail's sender guidelines require a user-reported spam rate below 0.3%; aim for under 0.1%.
+  - Opens, replies, and 'not spam' moves build reputation; volume alone does not.
 ```
 
 The output ends with provider-specific notes, such as Postmaster Tools for Gmail and SNDS/JMRP for Microsoft. The

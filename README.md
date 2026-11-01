@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/banner.svg" alt="email-deliverability-suite: Tested Python CLI for email deliverability: grade SPF/DKIM/DMARC/BIMI/MTA-STS, score spam risk, gate sends with a pre-send QA check, diagnose headers, classify bounces, check blocklists, plan warmup. JSON output + Claude Code skill." width="100%"></p>
+<p align="center"><img src="docs/banner.svg" alt="email-deliverability-suite: Tested Python CLI for email deliverability: grade SPF/DKIM/DMARC/BIMI/MTA-STS, score spam risk, gate sends with a pre-send QA check, diagnose headers, classify bounces, check blocklists, plan warmup. JSON output + Claude Code skill."></p>
 
 # email-deliverability-suite
 

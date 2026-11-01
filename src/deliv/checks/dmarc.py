@@ -5,6 +5,7 @@ from deliv.lib.dns import DNSClient, DNSLookupError, parse_tag_list
 from deliv.lib.scoring import Finding, Status
 
 _DMARC_POLICIES = {"none", "quarantine", "reject"}
+_POLICY_PAST = {"quarantine": "quarantined", "reject": "rejected"}
 
 
 def check_dmarc(client: DNSClient, domain: str) -> tuple[list[Finding], dict[str, str] | None]:
@@ -92,11 +93,12 @@ def check_dmarc(client: DNSClient, domain: str) -> tuple[list[Finding], dict[str
             )
         )
     else:
+        handled = _POLICY_PAST[policy]
         findings.append(
             Finding(
                 "DMARC policy",
                 Status.PASS,
-                f"Policy is p={policy}: failing mail is {policy}d, which blocks spoofing.",
+                f"Policy is p={policy}: failing mail is {handled}, which blocks spoofing.",
                 None,
                 category,
                 weight=5,
